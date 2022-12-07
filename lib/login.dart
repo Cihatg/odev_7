@@ -1,0 +1,152 @@
+import 'package:flutter/material.dart';
+import 'package:odev_7/register.dart';
+
+class MyLogin extends StatefulWidget {
+  const MyLogin({Key? key}) : super(key: key);
+
+  @override
+  _MyLoginState createState() => _MyLoginState();
+}
+
+var yazdir;
+var email;
+var yazmak;
+var sifre;
+
+class _MyLoginState extends State<MyLogin> {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        image: DecorationImage(
+            image: AssetImage('assets/login.png'), fit: BoxFit.cover),
+      ),
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
+        body: Stack(
+          children: [
+            Container(
+              padding: EdgeInsets.only(left: 35, top: 70),
+              child: Text(
+                'Welcome\nBack',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 33,
+                ),
+              ),
+            ),
+            SingleChildScrollView(
+              child: Container(
+                padding: EdgeInsets.only(
+                    top: MediaQuery.of(context).size.height * 0.5),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(
+                      margin: EdgeInsets.only(left: 35, right: 35),
+                      child: Column(
+                        children: [
+                          TextField(
+                            onChanged: (yazdir) {
+                              email = yazdir;
+                            },
+                            style: TextStyle(color: Colors.black),
+                            decoration: InputDecoration(
+                                labelText: "Email",
+                                border: UnderlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                )),
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          TextField(
+                            onChanged: (yazmak) {
+                              sifre = yazmak;
+                            },
+                            style: TextStyle(),
+                            obscureText: true,
+                            decoration: InputDecoration(
+                                labelText: "Password",
+                                border: UnderlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                )),
+                          ),
+                          SizedBox(
+                            height: 40,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                'Sign in',
+                                style: TextStyle(
+                                    fontSize: 27, fontWeight: FontWeight.w700),
+                              ),
+                              CircleAvatar(
+                                radius: 40,
+                                backgroundColor: Color(0xff880e4f),
+                                child: IconButton(
+                                    color: Colors.white,
+                                    onPressed: () {
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  MyRegister()));
+                                    },
+                                    icon: Icon(
+                                      Icons.arrow_forward,
+                                    )),
+                              )
+                            ],
+                          ),
+                          SizedBox(
+                            height: 40,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              TextButton(
+                                onPressed: () {
+                                  Navigator.pushNamed(context, 'register');
+                                },
+                                child: Text(
+                                  'Sign Up',
+                                  textAlign: TextAlign.left,
+                                  style: TextStyle(
+                                      decoration: TextDecoration.underline,
+                                      color: Color(0xff4c505b),
+                                      fontSize: 18),
+                                ),
+                                style: ButtonStyle(),
+                              ),
+                              TextButton(
+                                  onPressed: () {},
+                                  child: Text(
+                                    'Forgot Password',
+                                    style: TextStyle(
+                                      decoration: TextDecoration.underline,
+                                      color: Color(0xff4c505b),
+                                      fontSize: 18,
+                                    ),
+                                  )),
+                            ],
+                          )
+                        ],
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+void main() {
+  runApp(MaterialApp(theme: ThemeData(fontFamily: "Jost"), home: MyLogin()));
+}
